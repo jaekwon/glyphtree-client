@@ -3,14 +3,13 @@ require 'rake'
 
 begin
   require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "glyphtree-client"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "jae@flywheelnetworks.com"
-    gem.homepage = "http://github.com/jaekwon/glyphtree-client"
-    gem.authors = ["Jae Kwon"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "glyphtree-client"
+    gemspec.summary = "Ruby Client Code for GlyphTree API"
+    gemspec.description = "Ruby Client Code for GlyphTree API"
+    gemspec.email = "jae@glyphtree.com"
+    gemspec.homepage = "http://www.glyphtree.com"
+    gemspec.authors = ["Jae Kwon"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
