@@ -11,6 +11,7 @@ module GlyphTreeClient
 end
 
 require 'glyphtree-client/utils'
+require 'glyphtree-client/rest'
 require 'glyphtree-client/glyph'
 require 'glyphtree-client/transaction'
 
