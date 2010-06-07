@@ -18,10 +18,10 @@ module GlyphTreeClient
 			@comments = params[:comments] || {}
 			@transaction_string = {'id'=>@id, 'diff'=>@diff, 'type'=>@type, 'comments'=>@comments}.to_json
 			@signatures = {}
-			self.sign
+			self._sign
 		end
 
-		def sign
+		def _sign
 			@diff.each do |account, a_diff|
 				account_parsed = Glyph.parse_account_name(account)
 				glyph = account_parsed[:glyph]
@@ -42,8 +42,19 @@ module GlyphTreeClient
 		end
 
 		def execute
-			RestAPI.send_request('/transactions', self)
-			XXX do something like check the receipt
+			@signed_receipt = RestAPI.send_request('/transactions', self)
+			# validate the signature of the receipt
+			receipt_signature = @signed_receipt['signatures']['glyphtree']
+			receipt_string = @signed_receipt['receipt']
+			@receipt = JSON.parse(receipt_string)
+			raise Exception, 'Invalid Receipt! (not the correct id)' if @receipt['transaction']['id'] != @id
+			public_key = Config['public_keys']['glyphtree']
+			raise Exception, 'Invalid Receipt! (not signed by glyphtree)' if not
+				OpenSSL::PKey::RSA.new(public_key).verify(
+					OpenSSL::Digest::SHA256.new, 
+					Base64.decode64(@signed_receipt['signatures']['glyphtree']), 
+					receipt_string
+				)
 		end
 
 	end

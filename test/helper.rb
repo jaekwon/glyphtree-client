@@ -1,3 +1,5 @@
+ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ROOT"] = "."
 require 'rubygems'
 require 'test/unit'
 
