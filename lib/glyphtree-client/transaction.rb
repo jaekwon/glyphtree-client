@@ -4,13 +4,9 @@ require 'base64'
 
 module GlyphTreeClient
 
-	class Request
-		def to_json
-			raise NotImplementedError, 'you should subclass Request'
-		end
-	end
-
 	class SwapTransaction < Request
+		include RubyHelper
+
 		def initialize(params)
 			@id = params[:id] || StringHelper.randid(12)
 			@diff = params[:diff]
@@ -42,6 +38,7 @@ module GlyphTreeClient
 		end
 
 		def execute
+			return if @receipt # already executed
 			@signed_receipt = RestAPI.send_request('/transactions', self)
 			# validate the signature of the receipt
 			receipt_signature = @signed_receipt['signatures']['glyphtree']
@@ -52,7 +49,7 @@ module GlyphTreeClient
 			raise Exception, 'Invalid Receipt! (not signed by glyphtree)' if not
 				OpenSSL::PKey::RSA.new(public_key).verify(
 					OpenSSL::Digest::SHA256.new, 
-					Base64.decode64(@signed_receipt['signatures']['glyphtree']), 
+					Base64.decode64(receipt_signature),
 					receipt_string
 				)
 		end

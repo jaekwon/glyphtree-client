@@ -10,9 +10,17 @@ module GlyphTreeClient
 	else
 		Config = gt_client_config
 	end
+
+	class Request
+		def to_json
+			raise NotImplementedError, 'you should subclass Request'
+		end
+	end
+
 end
 
 require 'glyphtree-client/utils'
 require 'glyphtree-client/rest'
 require 'glyphtree-client/glyph'
 require 'glyphtree-client/transaction'
+require 'glyphtree-client/query'

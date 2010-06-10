@@ -5,4 +5,10 @@ module GlyphTreeClient
 			return (1..length).collect { chars[rand(chars.size)] }.pack("C*")
 		end
 	end
+
+	module RubyHelper
+		def evaluate(&block) # for ease of variable assignments using blocks
+			block.call
+		end
+	end
 end
