@@ -41,7 +41,7 @@ module GlyphTreeClient
 			response_signature = @signed_response['signatures']['glyphtree']
 			response_string = @signed_response['result']
 			@response = JSON.parse(response_string)
-			raise Exception, 'Invalid response! (not the correct id)' if @response['request']['id'] != @id
+			raise Exception, 'Invalid response! (not the correct id)' if @response['request_info']['id'] != @id
 			public_key = Config['public_keys']['glyphtree']
 			raise Exception, 'Invalid result! (not signed by glyphtree)' if not
 				OpenSSL::PKey::RSA.new(public_key).verify(
@@ -49,7 +49,7 @@ module GlyphTreeClient
 					Base64.decode64(response_signature),
 					response_string
 				)
-			return @response['response']
+			return @response['body']
 		end
 	end
 end
