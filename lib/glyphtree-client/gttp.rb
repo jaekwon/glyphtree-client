@@ -36,20 +36,20 @@ module GlyphTreeClient
 
 		def execute
 			return if @result # already executed
-			@response = RestAPI.send_request(@request_path, self)
+			@signed_response = RestAPI.send_request(@request_path, self)
 			# validate the signature of the result
-			result_signature = @response['signatures']['glyphtree']
-			result_string = @response['result']
-			@result = JSON.parse(result_string)
-			raise Exception, 'Invalid result! (not the correct id)' if @result['request']['id'] != @id
+			response_signature = @signed_response['signatures']['glyphtree']
+			response_string = @signed_response['result']
+			@response = JSON.parse(response_string)
+			raise Exception, 'Invalid response! (not the correct id)' if @response['request']['id'] != @id
 			public_key = Config['public_keys']['glyphtree']
 			raise Exception, 'Invalid result! (not signed by glyphtree)' if not
 				OpenSSL::PKey::RSA.new(public_key).verify(
 					OpenSSL::Digest::SHA256.new, 
-					Base64.decode64(result_signature),
-					result_string
+					Base64.decode64(response_signature),
+					response_string
 				)
-			return @result
+			return @response['response']
 		end
 	end
 end
