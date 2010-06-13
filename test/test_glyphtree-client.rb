@@ -1,11 +1,12 @@
 require 'helper'
+include GlyphTreeClient
 
 class TestGlyphtreeClient < Test::Unit::TestCase
 
 	def test_send_sandbox
-		trans_id = GlyphTreeClient::StringHelper.randid
-		receiver = GlyphTreeClient::StringHelper.randid
-		transaction = GlyphTreeClient::SwapTransaction.new(
+		trans_id = StringHelper.randid
+		receiver = StringHelper.randid
+		transaction = SwapTransaction.new(
 			:id => trans_id,
 			:diff => {
 				"@sandbox/#{receiver}" => {
@@ -20,8 +21,8 @@ class TestGlyphtreeClient < Test::Unit::TestCase
 
 	def test_query_sandbox
 
-		transaction = GlyphTreeClient::SwapTransaction.new(
-			:id => GlyphTreeClient::StringHelper.randid, # TODO is there a way to not type GlyphTreeClient:: every time?!
+		transaction = SwapTransaction.new(
+			:id => StringHelper.randid, # TODO is there a way to not type  every time?!
 			:diff => {
 				"@sandbox/joe" => {
 					"%sandbox" => 100,
@@ -30,16 +31,16 @@ class TestGlyphtreeClient < Test::Unit::TestCase
 			:comments => {
 			}
 		)
-		# transaction.execute
+		transaction.execute
 
-		query_id = GlyphTreeClient::StringHelper.randid
-		query = GlyphTreeClient::QueryTransaction.new(
+		query_id = StringHelper.randid
+		query = Query.new(
 			:id => query_id,
 			:account => '@sandbox/joe',
 			:currencies => ['%dollars']
 		)
-		results = query.execute
-		assert_equal({'%dollars' => 0}, results, 'Query result was not expected')
+		result = query.execute
+		assert_equal({'%dollars' => 0}, result, 'Query result was not expected')
 	end
 
 end

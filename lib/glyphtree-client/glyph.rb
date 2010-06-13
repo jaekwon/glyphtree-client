@@ -8,7 +8,7 @@ module GlyphTreeClient
 				parsed = {
 					:glyph => match[1],
 					:account => account_name,
-					:subaccount => (match[2].empty? ? nil : match[2]), 
+					:subaccount => (match[2].nil? or match[2].empty? ? nil : match[2]), 
 				}
 			end
 
@@ -19,7 +19,7 @@ module GlyphTreeClient
 				parsed = {
 					:glyph => match[1],
 					:currency => currency_name,
-					:subcurrency => match[2].empty? ? nil : match[2],
+					:subcurrency => (match[2].nil? or match[2].empty? ? nil : match[2]),
 				}
 			end
 		end

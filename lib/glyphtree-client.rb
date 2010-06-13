@@ -1,8 +1,7 @@
 module GlyphTreeClient
 	begin
-		puts "loading GlyphTree Client config"
 		env = ENV['RAILS_ENV'] || 'development'
-		root = ENV['RAILS_ROOT'] || '.'
+		root = ENV['RAILS_ROOT'] || File.expand_path('../../', __FILE__)
 		gt_client_config = YAML::load(IO.read(root + "/config/glyphtree_client.yml"))[env]
 	rescue Exception => e
 		raise e
@@ -10,17 +9,11 @@ module GlyphTreeClient
 	else
 		Config = gt_client_config
 	end
-
-	class Request
-		def to_json
-			raise NotImplementedError, 'you should subclass Request'
-		end
-	end
-
 end
 
-require 'glyphtree-client/utils'
-require 'glyphtree-client/rest'
-require 'glyphtree-client/glyph'
-require 'glyphtree-client/transaction'
-require 'glyphtree-client/query'
+require File.expand_path('../glyphtree-client/utils', __FILE__)
+require File.expand_path('../glyphtree-client/gttp', __FILE__)
+require File.expand_path('../glyphtree-client/rest', __FILE__)
+require File.expand_path('../glyphtree-client/glyph', __FILE__)
+require File.expand_path('../glyphtree-client/transaction', __FILE__)
+require File.expand_path('../glyphtree-client/query', __FILE__)

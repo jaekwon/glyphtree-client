@@ -24,3 +24,29 @@ test:
       Gid8h7y2I013z6QGdecCQC9GYSwTXm8J+7XAiw8RHyP8cBnEeqApwGEru3lw4aYu
       XLeIos00WkL7oAXbcI6HtIhut78yqUXOXOWYX2yA4fY=
       -----END RSA PRIVATE KEY-----
+production:
+  base_api_url: "http://127.0.0.1:3003"
+  public_keys:
+    glyphtree: |
+      -----BEGIN RSA PUBLIC KEY-----
+      MIGJAoGBALpE+VVsejqnhflyvv75NatGyUxjExgkxX/z8PYbt4qRpAXqW6/f4ZVM
+      YVNO+X+gXGNT6rFv+gJetSBtnPiwsSFensclLxe92NYyI2h7T7W5PckeCtHFPoot
+      iKkad8ixb+hL7W37dSg0lyT7IC7+DU8CBsj8vTmAZECI2c/lGfurAgMBAAE=
+      -----END RSA PUBLIC KEY-----
+  secret_keys:
+    sandbox: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIICXAIBAAKBgQDT9AeWa7ArIslJKN10iabpG44PNq9hIenMdbTuUCYUZ1UvobZS
+      ccZmQerE/O0A/JIBCeNyM217n0fFE4if9PXoNUfpmE+OyIcw6DBmc6K5mT30BN9O
+      3c4RF9eSTs30lmembKsoIZFNqHcKjLJ9k1a6CRppWY7QtY9COorBwq9fZQIDAQAB
+      AoGAFaYpWD3ropxM/wIDjLG6sLi1y+wEAeHa5Z1oO6dIHHFpjBHyc31XjH5TIofL
+      FXy21RBTgQiruCLOy9xw6hW1QDDgZh+YUjHPN+oT2eBdcrzZIAlhpJQG0NkXqrFy
+      URpOzFKdOn5+839ODv2Ae+IsWNrl2C+OBpBEGbxUY5UcdEkCQQD9RoKmCC5yYb2x
+      mdpwxCpI184qfsMbN8oiu/j5ZyLPKqInEp5bxY5NusG+I7mavjsnwfhYdE0/owEZ
+      6J8jVMe/AkEA1ju5F9EPVRkR33qhknXOyVRK7fhL6BaqFlwVz5aaOapx0qdpH5y1
+      ZsLGQuniYzV7nsaKWCMTUgZ9OrXfQc9B2wJAM3YULbAT3+HELUXZgHgbL1nJ5hCD
+      jBA13gDbgbFW/UjoUZAS5Qqq81gy7XNMzwg/9MAQuchHudpg6ua9Duy2+QJBAJLB
+      wO820NkL3nmISWzKdUjoDJhucplgBU5h8LMPSUFdqLGU62ezc3Uc0rJ+BA7QUYoY
+      Gid8h7y2I013z6QGdecCQC9GYSwTXm8J+7XAiw8RHyP8cBnEeqApwGEru3lw4aYu
+      XLeIos00WkL7oAXbcI6HtIhut78yqUXOXOWYX2yA4fY=
+      -----END RSA PRIVATE KEY-----
