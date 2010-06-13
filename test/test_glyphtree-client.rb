@@ -34,7 +34,7 @@ class TestGlyphtreeClient < Test::Unit::TestCase
 		transaction.execute
 
 		query_id = StringHelper.randid
-		query = Query.new(
+		query = BalanceQuery.new(
 			:id => query_id,
 			:account => '@sandbox/joe',
 			:currencies => ['%dollars']
