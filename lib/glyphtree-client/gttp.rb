@@ -4,6 +4,9 @@ require 'base64'
 
 module GlyphTreeClient
 
+	class GTTPException < Exception
+	end
+
 	class GTTPRequest
 		include RubyHelper
 
@@ -37,6 +40,7 @@ module GlyphTreeClient
 		def execute
 			return if @result # already executed
 			@signed_response = RestAPI.send_request(@request_path, self)
+			raise GTTPException, @signed_response['error']['message'] if @signed_response['error']
 			# validate the signature of the response
 			response_signature = @signed_response['signatures']['glyphtree']
 			response_string = @signed_response['response']
